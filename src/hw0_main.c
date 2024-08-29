@@ -16,12 +16,26 @@ scanf(" %c", &choice); //this command will erase whitespace in the token selecti
 */
 
 int main() {
+    char piece;
+    int row;
+    int col;
+
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             printf("%c ", board[i][j]);
         }
         printf("\n");
     }
+
+    printf("Choose a piece (x or o) or q to quit: ");
+    scanf("%c", &piece);
+    printf("Choose a row (0-4): ");
+    scanf("%d", &row);
+    printf("Choose a column (0-4): ");
+    scanf("%d", &col);
+
+
+
     return 0;
 }
 
