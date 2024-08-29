@@ -9,31 +9,40 @@ char board[ROWS][COLS] = {
     {'o', '-', 'x', 'x', '-'}, 
     {'x', 'o', 'x', 'o', 'o'}};
 
+/* PROMPT ENTRIES */
+char piece;
+int row;
+int col;
+
 /* Hint:
 
 scanf(" %c", &choice); //this command will erase whitespace in the token selection
 
 */
 
-int main() {
-    char piece;
-    int row;
-    int col;
-
+void printGameBoard() {
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             printf("%c ", board[i][j]);
         }
         printf("\n");
     }
+}
 
+void printGamePrompts() {
     printf("Choose a piece (x or o) or q to quit: ");
     scanf("%c", &piece);
     printf("Choose a row (0-4): ");
     scanf("%d", &row);
     printf("Choose a column (0-4): ");
     scanf("%d", &col);
+}
 
+int main() {
+
+    printGameBoard();
+    printGamePrompts();
+    
 
 
     return 0;
