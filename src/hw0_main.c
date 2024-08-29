@@ -58,6 +58,11 @@ int main() {
         scanf("%d", &col);
     }
 
+    /* Error Message: Invalid Cell Choice */
+    if (board[row][col] != '-') {
+        printf("Invalid choice. That space is already occupied.");
+    }
+
     return 0;
 }
 
