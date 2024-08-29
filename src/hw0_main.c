@@ -23,20 +23,18 @@ scanf(" %c", &choice); //this command will erase whitespace in the token selecti
 
 */
 
-void isBoardFilled() {
+bool isBoardFilled() {
     bool filled = true;
 
     for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; i < COLS; i++) {
-            if(board[i][j] == '-') {
+        for (int j = 0; j < COLS; j++) {
+            if (board[i][j] == '-') {
                 filled = false;
             }
         }
     }
 
-    if (filled == true) {
-        printf("Congratulations, you have filled the board!");
-    }
+    return filled;
 }
 
 void printGameBoard() {
@@ -101,16 +99,25 @@ void printGamePrompts() {
         printGamePrompts();
     } else {
         board[row][col] = piece;
-        printGameBoard();
-        printGamePrompts();
-        /*isBoardFilled();*/
+
+        if (isBoardFilled() == false) {
+            printGameBoard();
+            printGamePrompts();
+        } else {
+            printf("Congratulations, you have filled the board!\n");
+            printGameBoard();
+        }
     }
+}
+
+void runGame() {
+    printGameBoard();
+    printGamePrompts();
 }
 
 int main() {
 
-    printGameBoard();
-    printGamePrompts();
+    runGame();
     
     return 0;
 }
