@@ -102,6 +102,7 @@ void printGamePrompts() {
     } else {
         board[row][col] = piece;
         printGameBoard();
+        printGamePrompts();
         /*isBoardFilled();*/
     }
 }
