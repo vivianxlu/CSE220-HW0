@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
+
 #define ROWS 5
 #define COLS 5
 
@@ -44,6 +46,8 @@ int main() {
     printGameBoard();
     printGamePrompts();
     
+    
+
     /* Error Message: Invalid Values */
     if (piece != 'x' && piece != 'o' && piece != 'q') {
         printf("Invalid choice. Choose a piece (x or o) or q to quit: ");
@@ -60,7 +64,22 @@ int main() {
 
     /* Error Message: Invalid Cell Choice */
     if (board[row][col] != '-') {
-        printf("Invalid choice. That space is already occupied.");
+        printf("Invalid choice. That space is already occupied."); /* If the space is occupied, send an error message. */
+    }
+
+    /* Print the Winning Message */
+    bool boardFilled = true;
+
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; i < COLS; i++) {
+            if(board[i][j] == '-') {
+                boardFilled = false;
+            }
+        }
+    }
+
+    if (boardFilled == true) {
+        printf("Congratulations, you have filled the board!");
     }
 
     return 0;
