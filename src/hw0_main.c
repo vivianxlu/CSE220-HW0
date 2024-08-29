@@ -33,55 +33,64 @@ void printGameBoard() {
 }
 
 void printGamePrompts() {
+    /* Choose a piece */
     printf("Choose a piece (x or o) or q to quit: ");
-    scanf("%c", &piece);
+    scanf(" %c", &piece);
+
+    if (piece != 'x' && piece != 'o' && piece != 'q') {
+        printf("Invalid choice. Choose a piece (x or o) or q to quit: ");
+        scanf(" %c", &piece);
+    }
+
+    /* Choose a row */
     printf("Choose a row (0-4): ");
-    scanf("%d", &row);
+    scanf(" %d", &row);
+
+    if (!(row >= 0 && row <= 4)) {
+        printf("Invalid choice. Choose a row (0-4): ");
+        scanf(" %d", &row);
+    }
+
+    /* Choose a column */
     printf("Choose a column (0-4): ");
-    scanf("%d", &col);
+    scanf(" %d", &col);
+
+    if (!(col >= 0 && col <= 4)) {
+        printf("Invalid choice. Choose a column (0-4): ");
+        scanf(" %d", &col);
+    }
+
+    /* Check if the chosen space is filled */
+    if (board[row][col] != '-') {
+        printf("Invalid choice. That space is already occupied.");
+    } else {
+        printGameBoard();
+        printGamePrompts();
+    }
+}
+
+void isBoardFilled() {
+    bool filled = true;
+
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; i < COLS; i++) {
+            if(board[i][j] == '-') {
+                filled = false;
+            }
+        }
+    }
+
+    if (filled == true) {
+        printf("Congratulations, you have filled the board!");
+    }
 }
 
 int main() {
 
     printGameBoard();
     printGamePrompts();
+    isBoardFilled();
     
-    
-
-    /* Error Message: Invalid Values */
-    if (piece != 'x' && piece != 'o' && piece != 'q') {
-        printf("Invalid choice. Choose a piece (x or o) or q to quit: ");
-        scanf("%c", &piece);
-    }
-    if (!(row >= 0 && row <= 4)) {
-        printf("Invalid choice. Choose a row (0-4): ");
-        scanf("%d", &row);
-    }
-    if (!(col >= 0 && col <= 4)) {
-        printf("Invalid choice. Choose a column (0-4): ");
-        scanf("%d", &col);
-    }
-
-    /* Error Message: Invalid Cell Choice */
-    if (board[row][col] != '-') {
-        printf("Invalid choice. That space is already occupied."); /* If the space is occupied, send an error message. */
-    }
-
-    /* Print the Winning Message */
-    bool boardFilled = true;
-
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; i < COLS; i++) {
-            if(board[i][j] == '-') {
-                boardFilled = false;
-            }
-        }
-    }
-
-    if (boardFilled == true) {
-        printf("Congratulations, you have filled the board!");
-    }
-
     return 0;
 }
 
