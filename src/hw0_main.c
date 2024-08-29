@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #define ROWS 5
 #define COLS 5
 
@@ -43,7 +44,19 @@ int main() {
     printGameBoard();
     printGamePrompts();
     
-
+    /* Error Message: Invalid Values */
+    if (piece != 'x' && piece != 'o' && piece != 'q') {
+        printf("Invalid choice. Choose a piece (x or o) or q to quit: ");
+        scanf("%c", &piece);
+    }
+    if (!(row >= 0 && row <= 4)) {
+        printf("Invalid choice. Choose a row (0-4): ");
+        scanf("%d", &row);
+    }
+    if (!(col >= 0 && col <= 4)) {
+        printf("Invalid choice. Choose a column (0-4): ");
+        scanf("%d", &col);
+    }
 
     return 0;
 }
