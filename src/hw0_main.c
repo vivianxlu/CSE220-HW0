@@ -23,6 +23,22 @@ scanf(" %c", &choice); //this command will erase whitespace in the token selecti
 
 */
 
+void isBoardFilled() {
+    bool filled = true;
+
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; i < COLS; i++) {
+            if(board[i][j] == '-') {
+                filled = false;
+            }
+        }
+    }
+
+    if (filled == true) {
+        printf("Congratulations, you have filled the board!");
+    }
+}
+
 void printGameBoard() {
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
@@ -80,25 +96,12 @@ void printGamePrompts() {
 
     /* Check if the chosen space is filled */
     if (board[row][col] != '-') {
-        printf("Invalid choice. That space is already occupied.");
+        printf("Invalid choice. That space is already occupied.\n");
         printGameBoard();
         printGamePrompts();
-    }
-}
-
-void isBoardFilled() {
-    bool filled = true;
-
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; i < COLS; i++) {
-            if(board[i][j] == '-') {
-                filled = false;
-            }
-        }
-    }
-
-    if (filled == true) {
-        printf("Congratulations, you have filled the board!");
+    } else {
+        board[row][col] = piece;
+        isBoardFilled();
     }
 }
 
@@ -106,7 +109,6 @@ int main() {
 
     printGameBoard();
     printGamePrompts();
-    isBoardFilled();
     
     return 0;
 }
